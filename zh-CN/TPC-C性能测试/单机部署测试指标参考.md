@@ -151,13 +151,13 @@ grant dba to tpcc;
 create user regress identified by regress;
 grant dba to regress;
 
-DECLARE
-  jobid INT;
-BEGIN
-  SELECT job INTO jobid FROM dba_jobs WHERE what LIKE '%GATHER_DATABASE_STATS%';
+declare
+  jobid int;
+begin
+  select job into jobid from dba_jobs where what like '%GATHER_DATABASE_STATS%';
   DBMS_JOB.BROKEN(jobid,true);
-  COMMIT;
-END;
+  commit;
+end;
 /
 ```
 
